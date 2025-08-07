@@ -76,12 +76,12 @@ The map shows the locations of substations and the associated EV charging statio
 
 I went ahead and zoomed in on specific substations to visualize their direct connections to charging stations.
 
-![Closer1](Closer1/Closer1.png)                                                                  ![Closer1](Closer2/Closer2.png)
+![Closer1](Closer1/Closer1.png)                                                                  ![Closer2](Closer2/Closer2.png)
 
 
 
 
- ![Closer1](Closer3/Closer3.png)
+ ![Closer2](Closer3/Closer3.png)
 
 
 Looking at the Zoomed in Substations and theie associated Ev Charging Stations, I noticed something similiar: The Ev charging station seems to be too far from it's corresponding Substation.
@@ -239,6 +239,8 @@ However, this does **not** mean all substations are far from overload — some a
 | Substation_258  | 0.2445                        | 5,378.21                 | 22                               |
 
 These substations should be **prioritized for monitoring or future capacity upgrades**, as they may become bottlenecks under continued EV adoption and load growth.
+
+### Relationship between Number of EVs and Consumption-to-Capacity Ratio
 
 I went further to investigate if the number of the EVs that comes to the ev stations of a substation also has any correlation with the overload.
 
