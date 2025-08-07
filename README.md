@@ -1,5 +1,26 @@
 # Distribution Network Analysis for PowerCharge Utilities
 
+## 📚 Table of Contents
+
+- [Project Overview](#project-overview)
+- [Business Problems](#business-problems)
+- [Project Objectives](#project-objectives)
+- [Dataset Description](#dataset-description)
+- [Tools Used](#tools-used)
+- [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-eda)
+  - [Univariate Analysis](#univariate-analysis)
+  - [Distribution of Key Variables](#distribution-of-key-variables)
+  - [Bivariate Analysis](#bivariate-analysis)
+  - [Locations of Substations and EV Charging Stations](#locations-of-substations-and-ev-charging-stations)
+  - [Distribution of EV Types Across North America](#distribution-of-ev-types-across-north-america)
+- [Network Capacity Assessment](#network-capacity-assessment)
+  - [Identifying Bottlenecks](#identifying-bottlenecks)
+  - [Result: Network Capacity Assessment](#result-network-capacity-assessment)
+  - [Relationship between Number of EVs and Consumption-to-Capacity Ratio](#relationship-between-number-of-evs-and-consumption-to-capacity-ratio)
+- [Correlation with Weather Data](#correlation-with-weather-data)
+- [The Optimization Strategy / Recommendation](#the-optimization-strategy--recommendation)
+
+
 # Project Overview
 
 As the energy sector embraces sustainability, the rising adoption of electric vehicles (EVs) is putting new pressure on utility distribution networks. This project, conducted for PowerCharge Utilities, analyzes the capacity of the electrical grid to handle increased EV charging demand and recommends data-driven strategies for future optimization.
