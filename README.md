@@ -1,26 +1,5 @@
 # Distribution Network Analysis for PowerCharge Utilities
 
-## 📚 Table of Contents
-
-- [Project Overview](#project-overview)
-- [Business Problems](#business-problems)
-- [Project Objectives](#project-objectives)
-- [Dataset Description](#dataset-description)
-- [Tools Used](#tools-used)
-- [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-eda)
-  - [Univariate Analysis](#univariate-analysis)
-  - [Distribution of Key Variables](#distribution-of-key-variables)
-  - [Bivariate Analysis](#bivariate-analysis)
-  - [Locations of Substations and EV Charging Stations](#locations-of-substations-and-ev-charging-stations)
-  - [Distribution of EV Types Across North America](#distribution-of-ev-types-across-north-america)
-- [Network Capacity Assessment](#network-capacity-assessment)
-  - [Identifying Bottlenecks](#identifying-bottlenecks)
-  - [Result: Network Capacity Assessment](#result-network-capacity-assessment)
-  - [Relationship between Number of EVs and Consumption-to-Capacity Ratio](#relationship-between-number-of-evs-and-consumption-to-capacity-ratio)
-- [Correlation with Weather Data](#correlation-with-weather-data)
-- [The Optimization Strategy / Recommendation](#the-optimization-strategy--recommendation)
-
-
 # Project Overview
 
 PowerCharge Utilities is a prominent electric utility provider operating in a dynamic and evolving energy landscape. The company's primary mission is to ensure the reliable delivery of electrical power to millions of customers across urban and suburban areas. PowerCharge Utilities has established itself as a key player in the energy sector, focusing on sustainability and adapting to emerging technologies.
@@ -69,6 +48,20 @@ The project was developed using a Python-based tech stack:
 
 - **Jupyter Notebook:** For documenting and presenting the analysis.
 
+[View Full Analysis Here](Distribution_analysis/Distribution_analysis.ipynb)
+
+## Executive Summary
+
+- **Electricity Demand Patterns:** Average consumption centered around 500 kWh, with consistent daily charging habits, particularly from commercial consumers, highlighting sustained pressure on the grid.
+
+- **Geospatial Insights:** Many EV charging stations are located far from their corresponding substations, creating inefficiencies and potential stress points in the network.
+
+- **Network Capacity Assessment:** While no substation showed immediate critical overload (Consumption-to-Capacity Ratio ≥ 1), several substations (e.g., Substation_773, Substation_87, and Substation_711) exhibited high load ratios, making them priority candidates for future upgrades.
+
+- **EV Load Correlation:** The number of EVs per substation showed little correlation with overload risk, suggesting that spatial and consumption patterns are stronger drivers of capacity strain.
+
+- **Weather Impact:** Temperature and precipitation had minimal influence on consumption patterns in this dataset, although extreme conditions may still warrant monitoring.
+
 # Exploratory Data Analysis (EDA)
 The EDA phase involved both univariate and bivariate analysis to gain insights into consumption patterns and network performance.
 
@@ -114,59 +107,6 @@ Looking at the Zoomed in Substations and theie associated Ev Charging Stations, 
 ### Distribution of EV types across north america
 
 I went ahead to check if EV Types were evenly distributed.
-
-Code:
-```#Group the data by location and ev types , then count the numbers of stations
-
-grouped_data = Distribution_data.groupby(['ev_latitude', 'ev_longitude','EV_Type']).size().reset_index(name = 'count')
-
-#convert to geodataframe
-
-grouped_gdf = gpd.GeoDataFrame(grouped_data, 
-                               geometry = gpd.points_from_xy(grouped_data.ev_longitude, grouped_data.ev_latitude))
-
-#load map data
-
-world = gpd.read_file("ne_110m_admin_0_countries.zip")
-
-
-#Filter to north amaerica since our locations are contered on north amaerica
-
-north_america_countries = [
-    "United States of America", "Canada", "Mexico",
-    "Bahamas", "Cuba", "Haiti", "Dominican Republic",
-    "Jamaica", "Guatemala", "Honduras", "El Salvador",
-    "Nicaragua", "Costa Rica", "Panama", "Belize",
-    "Barbados", "Trinidad and Tobago", "Saint Lucia",
-    "Saint Kitts and Nevis", "Antigua and Barbuda",
-    "Saint Vincent and the Grenadines", "Grenada"
-]
-
-north_america = world[world["ADMIN"].isin(north_america_countries)]
-
-
-#plotting with zoom
-fig, ax = plt.subplots(figsize=(10, 8))
-north_america.boundary.plot(ax=ax, linewidth=0.5, color='black')
-north_america.plot(ax=ax, color='lightblue', edgecolor='black')
-
-#Definr the colors of the ev types
-
-colors = {'Electric Car': 'red', 'Electric Scooter' : 'blue', 'Electric Bike':'green'}
-
-# Plot the EV charging stations with marker sizes reflecting the count
-for ev_type, color in colors.items():
-    sub_gdf = grouped_gdf[grouped_gdf['EV_Type'] == ev_type]
-    sub_gdf.plot(ax=ax, markersize=sub_gdf['count']*20, color=color, label=ev_type, alpha=0.7)
-
-plt.title('Distribution of EV Charging Stations by Type and Frequency in North America')
-plt.xlabel('Longitude')
-plt.ylabel('Latitude')
-plt.legend()
-plt.tight_layout()
-plt.show()
-
-```
 
 Result:
 ![EVdistribution](EVdistribution/EVdistribution.png)
