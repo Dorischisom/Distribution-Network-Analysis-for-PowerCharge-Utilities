@@ -52,15 +52,24 @@ The project was developed using a Python-based tech stack:
 
 ## Executive Summary
 
-- **Electricity Demand Patterns:** Average consumption centered around 500 kWh, with consistent daily charging habits, particularly from commercial consumers, highlighting sustained pressure on the grid.
+### Critical Finding: 
+Network capacity analysis reveals no immediate critical bottlenecks (no substations operating at >90% capacity), but several areas require proactive attention to prevent future overloads.
 
-- **Geospatial Insights:** Many EV charging stations are located far from their corresponding substations, creating inefficiencies and potential stress points in the network.
+### Key Performance Indicators:
 
-- **Network Capacity Assessment:** While no substation showed immediate critical overload (Consumption-to-Capacity Ratio ≥ 1), several substations (e.g., Substation_773, Substation_87, and Substation_711) exhibited high load ratios, making them priority candidates for future upgrades.
+- Average consumption-to-capacity ratio: 0.15 (15% utilization)
+- Highest risk substations: 5 facilities operating above 24% capacity
+- Geographic distribution: EV stations located significant distances from serving substations
+- Weather correlation: Minimal impact on consumption patterns (correlation <0.15)
 
-- **EV Load Correlation:** The number of EVs per substation showed little correlation with overload risk, suggesting that spatial and consumption patterns are stronger drivers of capacity strain.
+### Top Risk Areas Identified:
 
-- **Weather Impact:** Temperature and precipitation had minimal influence on consumption patterns in this dataset, although extreme conditions may still warrant monitoring.
+- Substation_773: 44% capacity utilization (highest risk)
+- Substation_87: 43% capacity utilization
+- Substation_711: 27% capacity utilization
+
+The analysis indicates PowerCharge Utilities has adequate current capacity but must implement strategic upgrades to accommodate projected EV growth and ensure service reliability.
+
 
 # Exploratory Data Analysis (EDA)
 The EDA phase involved both univariate and bivariate analysis to gain insights into consumption patterns and network performance.
